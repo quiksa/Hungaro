@@ -99,14 +99,8 @@ public class Matriz {
         for (int i = 0; i < matriz.length; i++) {
             int row = countLinha(matriz, i);
             for (int j = 0; j < matriz.length; j++) {
-                int col = countColuna(matriz, j);
-//                if (matriz[i][j] == 0) {;
-//                    Matriz mat = new Matriz();
-//                    mat.setLinha(i);
-//                    mat.setColuna(j);
-//                    xyZero.add(mat);
-//                }
-
+                int col = countColuna(matriz, j);               
+                
             }
         }
         return matriz;
@@ -117,6 +111,7 @@ public class Matriz {
         for (int i = 0; i < matriz.length; i++) {
             if (matriz[index][i] == 0) {
                 numeroLinhas++;
+                //System.err.println("linha:" + index + " coluna:" + i);
             }
         }
         return numeroLinhas;
@@ -127,7 +122,7 @@ public class Matriz {
         for (int i = 0; i < matriz.length; i++) {
             if (matriz[i][index] == 0) {
                 numeroColunas++;
-                System.err.println("linha:"+i+" coluna:"+index);
+                //System.err.println("linha:" + i + " coluna:" + index);
             }
         }
         return numeroColunas;
