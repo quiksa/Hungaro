@@ -16,24 +16,6 @@ public class Matriz {
 
     int linha;
     int coluna;
-    int countLinhas;
-    int countColunas;
-
-    public int getCountLinhas() {
-        return countLinhas;
-    }
-
-    public void setCountLinhas(int countLinhas) {
-        this.countLinhas = countLinhas;
-    }
-
-    public int getCountColunas() {
-        return countColunas;
-    }
-
-    public void setCountColunas(int countColunas) {
-        this.countColunas = countColunas;
-    }
 
     public int getLinha() {
         return linha;
@@ -110,43 +92,50 @@ public class Matriz {
         return matriz;
     }
 
-    public int[][] cobrirZeros(int matriz[][]) {
-        ArrayList<Matriz> linhas = new ArrayList<Matriz>();
-        ArrayList<Matriz> colunas = new ArrayList<Matriz>();
-        ArrayList<Matriz> xyZero = new ArrayList<Matriz>();
+    public ArrayList<Matriz> getZeros(int matriz[][]) {
+        ArrayList<Matriz> zeros = new ArrayList<Matriz>();
         for (int i = 0; i < matriz.length; i++) {
-            linhas = countLinha(matriz, i);
             for (int j = 0; j < matriz.length; j++) {
-
+                if (matriz[i][j] == 0) {
+                    Matriz m = new Matriz();
+                    m.setLinha(i);
+                    m.setColuna(j);
+                    zeros.add(m);
+                }
             }
         }
-        return matriz;
+        return zeros;
     }
 
-    public ArrayList<Matriz> countLinha(int matriz[][], int index) {
-        ArrayList<Matriz> mat = new ArrayList<Matriz>();
-        for (int i = 0; i < matriz.length; i++) {
-            if (matriz[index][i] == 0) {
-                Matriz m = new Matriz();
-                m.setLinha(i);
-                m.setColuna(index);
-                mat.add(m);
+    public void calcula(ArrayList<Matriz> list) {
+        int linha0 = 0;
+        int linha1 = 0;
+        int linha2 = 0;
+        int linha3 = 0;
+        int coluna0 = 0;
+        int coluna1 = 0;
+        int coluna2 = 0;
+        int coluna3 = 0;
+        for (Matriz pontos : list) {
+            if (pontos.getLinha() == 0) {
+                linha0++;
+            } else if (pontos.getLinha() == 1) {
+                linha1++;
+            } else if (pontos.getLinha() == 2) {
+                linha2++;
+            } else if (pontos.getLinha() == 3) {
+                linha3++;
+            }
+
+            if (pontos.getColuna() == 0) {
+                coluna0++;
+            } else if (pontos.getColuna() == 1) {
+                coluna1++;
+            } else if (pontos.getColuna() == 2) {
+                coluna2++;
+            } else if (pontos.getColuna() == 3) {
+                coluna3++;
             }
         }
-        return mat;
     }
-
-    public ArrayList<Matriz> countColuna(int matriz[][], int index) {
-        ArrayList<Matriz> mat = new ArrayList<Matriz>();
-        for (int i = 0; i < matriz.length; i++) {
-            if (matriz[i][index] == 0) {
-                Matriz m = new Matriz();
-                m.setLinha(i);
-                m.setColuna(index);
-                mat.add(m);
-            }
-        }
-        return mat;
-    }
-
 }
