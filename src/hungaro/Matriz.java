@@ -225,11 +225,15 @@ public class Matriz {
                     System.out.println();
                 }
 
-                aux = false;
+                list = getZeros(matrizCoberta(matrizAux));
+                if (list.size() == 0) {
+                    aux = false;
+                    
+                }
             }
             // for p/ listar a matriz
             if (aux) {
-                System.out.println("--------------------------");
+                System.out.println("-------------------------");
                 for (int i = 0; i < matrizAux.length; i++) {
                     for (int j = 0; j < matrizAux.length; j++) {
                         System.out.print(matrizAux[i][j] + "\t ");
@@ -237,20 +241,6 @@ public class Matriz {
                     System.out.println();
                 }
             }
-        }
-        boolean matrizCoberta = verificaSolucao(matrizAux);
-
-        if (matrizCoberta == false) {
-            int menorValor = getMenorValorMatriz(matrizAux);
-
-            for (int i = 0; i < matrizAux.length; i++) {
-                for (int j = 0; j < matrizAux.length; j++) {
-                    if (matrizAux[i][j] != -1) {
-                        matrizAux[i][j] = matrizAux[i][j] - menorValor;
-                    }
-                }
-            }
-            listar(matrizAux);
         }
 
     }
@@ -270,4 +260,25 @@ public class Matriz {
         }
         return menorValor;
     }
+
+    public int[][] matrizCoberta(int matriz[][]) {
+        //verifica se o numero de cobrimentos é igual a ordem da matriz Ex: matriz 4x4(ordem 4) 
+        boolean matrizCoberta = true;
+        matrizCoberta = verificaSolucao(matriz);
+
+        if (matrizCoberta == false) {
+            int menorValor = getMenorValorMatriz(matriz);
+
+            for (int i = 0; i < matriz.length; i++) {
+                for (int j = 0; j < matriz.length; j++) {
+                    if (matriz[i][j] != -1) {
+                        matriz[i][j] = matriz[i][j] - menorValor;
+                    }
+                }
+            }
+            //listar(matriz);
+        }
+        return matriz;
+    }
+    
 }
