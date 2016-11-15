@@ -27,7 +27,7 @@ public class Hungaro {
         m.calcular(mat);
         m.listar(mat);
         listaPontos = m.getZeros(mat);
-        m.calcula(listaPontos);
+        m.calcula(listaPontos,mat);
         
     }
 }
