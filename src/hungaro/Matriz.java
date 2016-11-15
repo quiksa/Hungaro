@@ -33,6 +33,8 @@ public class Matriz {
         this.coluna = coluna;
     }
 
+    ArrayList<Matriz> allZeros = new ArrayList<Matriz>();
+
     public int[][] listar(int matriz[][]) {
         System.out.println("--------------------------");
         for (int i = 0; i < matriz.length; i++) {
@@ -127,6 +129,7 @@ public class Matriz {
 
     public void calcula(ArrayList<Matriz> list, int matriz[][]) {
         ArrayList<Matriz> zeros = new ArrayList<Matriz>();
+        allZeros.addAll(list);
         int matrizAux[][] = null;
         matrizAux = matriz;
         boolean aux = true;
@@ -213,6 +216,8 @@ public class Matriz {
                     matrizAux[i][3] = -1;
                 }
             }
+            //adiciona todos zeros na lista
+
             //verifica se existe zeros na matriz
             list = getZeros(matrizAux);
             if (list.size() == 0) {
@@ -226,6 +231,7 @@ public class Matriz {
                 }
 
                 list = getZeros(matrizCoberta(matrizAux));
+                allZeros.addAll(list);
                 if (list.size() == 0) {
                     aux = false;
                     
@@ -242,7 +248,6 @@ public class Matriz {
                 }
             }
         }
-
     }
 
     public int getMenorValorMatriz(int matriz[][]) {
@@ -280,5 +285,5 @@ public class Matriz {
         }
         return matriz;
     }
-    
+
 }
