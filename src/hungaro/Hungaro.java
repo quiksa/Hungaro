@@ -20,15 +20,15 @@ public class Hungaro {
         ArrayList<Matriz> listaPontos = new ArrayList<Matriz>();
         ArrayList<Matriz> zeros = new ArrayList<Matriz>();
         int matriz[][] = {{1, 4, 6, 3}, {9, 7, 10, 9}, {4, 5, 11, 7}, {8, 7, 8, 5}};
-        int mat[][] = matriz;
         // mostra matriz original
         Matriz m = new Matriz();
         System.out.println("--Matriz-original--");
-        m.listar(mat);
-        m.subtrairLinhaColuna(mat);
-        m.listar(mat);
-        listaPontos = m.getZeros(mat);
-        zeros = m.calcula(listaPontos,mat);
-        m.getSolucao(zeros,matriz);   
+        m.listar(matriz);
+        m.subtrairLinhaColuna(matriz);
+        m.listar(matriz);
+        listaPontos = m.getZeros(matriz);
+        zeros = m.calcula(listaPontos,matriz);
+        int matriz2[][] = {{1, 4, 6, 3}, {9, 7, 10, 9}, {4, 5, 11, 7}, {8, 7, 8, 5}};
+        m.getSolucao(zeros,matriz2);   
     }
 }
