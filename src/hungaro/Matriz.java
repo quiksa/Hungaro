@@ -33,8 +33,6 @@ public class Matriz {
         this.coluna = coluna;
     }
 
-    ArrayList<Matriz> allZeros = new ArrayList<Matriz>();
-
     public int[][] listar(int matriz[][]) {
         System.out.println("--------------------------");
         for (int i = 0; i < matriz.length; i++) {
@@ -127,9 +125,9 @@ public class Matriz {
         return teste;
     }
 
-    public void calcula(ArrayList<Matriz> list, int matriz[][]) {
+    public ArrayList<Matriz> calcula(ArrayList<Matriz> list, int matriz[][]) {
         ArrayList<Matriz> zeros = new ArrayList<Matriz>();
-        allZeros.addAll(list);
+        zeros.addAll(list);
         int matrizAux[][] = null;
         matrizAux = matriz;
         boolean aux = true;
@@ -231,10 +229,10 @@ public class Matriz {
                 }
 
                 list = getZeros(matrizCoberta(matrizAux));
-                allZeros.addAll(list);
+                zeros.addAll(list);
                 if (list.size() == 0) {
                     aux = false;
-                    
+
                 }
             }
             // for p/ listar a matriz
@@ -248,6 +246,8 @@ public class Matriz {
                 }
             }
         }
+
+        return zeros;
     }
 
     public int getMenorValorMatriz(int matriz[][]) {
@@ -284,6 +284,62 @@ public class Matriz {
             //listar(matriz);
         }
         return matriz;
+    }
+
+    void getSolucao(ArrayList<Matriz> zeros, int[][] matriz) {
+        int coluna0 = 0, coluna1 = 0, coluna2 = 0, coluna3 = 0;
+        for (Matriz zero : zeros) {
+            if (zero.getColuna() == 0) {
+                coluna0++;
+            } else if (zero.getColuna() == 1) {
+                coluna1++;
+            } else if (zero.getColuna() == 2) {
+                coluna2++;
+            } else if (zero.getColuna() == 3) {
+                coluna3++;
+            }
+        }
+        boolean aux = false;
+        //busca menor elemento da coluna 0 
+        for (int i = 0; i < matriz.length; i++) {
+            if (aux == false) {
+                coluna0 = matriz[i][0];
+                aux = true;
+            } else if (matriz[i][0] < coluna0) {
+                coluna0 = matriz[i][0];
+            }
+        }
+        aux = false;
+        //busca menor elemento da coluna 1
+        for (int i = 0; i < matriz.length; i++) {
+            if (aux == false) {
+                coluna1 = matriz[i][1];
+                aux = true;
+            } else if (matriz[i][1] < coluna1) {
+                coluna1 = matriz[i][1];
+            }
+        }
+        aux = false;
+        //busca menor elemento da coluna 2
+        for (int i = 0; i < matriz.length; i++) {
+            if (aux == false) {
+                coluna2 = matriz[i][1];
+                aux = true;
+            } else if (matriz[i][1] < coluna2) {
+                coluna2 = matriz[i][1];
+            }
+        }
+        aux = false;
+        //busca menor elemento da coluna 1
+        for (int i = 0; i < matriz.length; i++) {
+            if (aux == false) {
+                coluna2 = matriz[i][1];
+                aux = true;
+            } else if (matriz[i][1] < coluna2) {
+                coluna2 = matriz[i][1];
+            }
+        }
+        int solucao = coluna0+coluna1+coluna2+coluna3;
     }
 
 }

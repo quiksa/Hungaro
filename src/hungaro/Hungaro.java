@@ -18,6 +18,7 @@ public class Hungaro {
      */
     public static void main(String[] args) {
         ArrayList<Matriz> listaPontos = new ArrayList<Matriz>();
+        ArrayList<Matriz> zeros = new ArrayList<Matriz>();
         int matriz[][] = {{1, 4, 6, 3}, {9, 7, 10, 9}, {4, 5, 11, 7}, {8, 7, 8, 5}};
         int mat[][] = matriz;
         // mostra matriz original
@@ -27,7 +28,7 @@ public class Hungaro {
         m.subtrairLinhaColuna(mat);
         m.listar(mat);
         listaPontos = m.getZeros(mat);
-        m.calcula(listaPontos,mat);
-        
+        zeros = m.calcula(listaPontos,mat);
+        m.getSolucao(zeros,matriz);   
     }
 }
