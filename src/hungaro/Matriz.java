@@ -34,7 +34,7 @@ public class Matriz {
     }
 
     public int[][] listar(int matriz[][]) {
-
+        System.out.println("--------------------------");
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz.length; j++) {
                 System.out.print(matriz[i][j] + "\t ");
@@ -44,7 +44,7 @@ public class Matriz {
         return matriz;
     }
 
-    public int[][] calcular(int matriz[][]) {
+    public int[][] subtrairLinhaColuna(int matriz[][]) {
         System.out.println("-------linha-------");
         boolean aux = false;
         int menorValor = 0;
@@ -107,9 +107,30 @@ public class Matriz {
         return zeros;
     }
 
-    public boolean calcula(ArrayList<Matriz> list, int matriz[][]) {
+    public boolean verificaSolucao(int matriz[][]) {
+        int valorMatriz = matriz.length * matriz.length;
+        int contador = 0;
+        boolean teste = true;
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz.length; j++) {
+                if (matriz[i][j] == -1) {
+                    contador++;
+                }
+            }
+        }
+
+        if (contador < 13) {
+            teste = false;
+        }
+        return teste;
+    }
+
+    public void calcula(ArrayList<Matriz> list, int matriz[][]) {
         ArrayList<Matriz> zeros = new ArrayList<Matriz>();
-        while (true) {
+        int matrizAux[][] = null;
+        matrizAux = matriz;
+        boolean aux = true;
+        while (aux) {
 
             int linha0 = 0, linha1 = 0, linha2 = 0, linha3 = 0;
             int coluna0 = 0, coluna1 = 0, coluna2 = 0, coluna3 = 0;
@@ -168,10 +189,8 @@ public class Matriz {
                 stMaiorColuna = "Coluna 3";
             }
 
-            System.out.println(maiorlinha);
-            System.out.println(maiorColuna);
-            int matrizAux[][] = null;
-            matrizAux = matriz;
+//            System.out.println(maiorlinha);
+//            System.out.println(maiorColuna);
             for (int i = 0; i < matrizAux.length; i++) {
                 if (maiorlinha >= maiorColuna) {
 
@@ -194,25 +213,61 @@ public class Matriz {
                     matrizAux[i][3] = -1;
                 }
             }
-
+            //verifica se existe zeros na matriz
             list = getZeros(matrizAux);
             if (list.size() == 0) {
+                //for p/ listar a matriz coberta
+                System.out.println("--------------------------");
                 for (int i = 0; i < matrizAux.length; i++) {
                     for (int j = 0; j < matrizAux.length; j++) {
                         System.out.print(matrizAux[i][j] + "\t ");
                     }
                     System.out.println();
                 }
-                return false;
+
+                aux = false;
             }
+            // for p/ listar a matriz
+            if (aux) {
+                System.out.println("--------------------------");
+                for (int i = 0; i < matrizAux.length; i++) {
+                    for (int j = 0; j < matrizAux.length; j++) {
+                        System.out.print(matrizAux[i][j] + "\t ");
+                    }
+                    System.out.println();
+                }
+            }
+        }
+        boolean matrizCoberta = verificaSolucao(matrizAux);
+
+        if (matrizCoberta == false) {
+            int menorValor = getMenorValorMatriz(matrizAux);
 
             for (int i = 0; i < matrizAux.length; i++) {
                 for (int j = 0; j < matrizAux.length; j++) {
-                    System.out.print(matrizAux[i][j] + "\t ");
+                    if (matrizAux[i][j] != -1) {
+                        matrizAux[i][j] = matrizAux[i][j] - menorValor;
+                    }
                 }
-                System.out.println();
             }
+            listar(matrizAux);
         }
 
+    }
+
+    public int getMenorValorMatriz(int matriz[][]) {
+        int menorValor = 0;
+        boolean aux = false;
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz.length; j++) {
+                if (aux == false && matriz[i][j] != -1) {
+                    menorValor = matriz[i][j];
+                    aux = true;
+                } else if (matriz[i][j] < menorValor && matriz[i][j] != -1) {
+                    menorValor = matriz[i][j];
+                }
+            }
+        }
+        return menorValor;
     }
 }

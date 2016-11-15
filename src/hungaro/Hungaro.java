@@ -24,7 +24,7 @@ public class Hungaro {
         Matriz m = new Matriz();
         System.out.println("--Matriz-original--");
         m.listar(mat);
-        m.calcular(mat);
+        m.subtrairLinhaColuna(mat);
         m.listar(mat);
         listaPontos = m.getZeros(mat);
         m.calcula(listaPontos,mat);
